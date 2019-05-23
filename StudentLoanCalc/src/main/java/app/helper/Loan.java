@@ -14,8 +14,15 @@ public class Loan {
 		while(prinpayed>=0) {
 			count++;
 			Payment p = new Payment(dIR, dTL,dLA,dAP,count);
+			
+			if(p.getPrinpayment()>prinpayed) {
+				p.setPrinpaymnt(prinpayed);
+				prinpayed = -1;
+			}
+			else{
+				prinpayed-= p.getPrinpayment();
+		}
 			payments.add(p);
-			prinpayed-= p.getPrinpayment();
 		}
 		for(Payment pay: payments) {
 			totalPay+= pay.getIntpayment();
